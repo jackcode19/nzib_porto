@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* html {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+}
+
+.bg-main {
+  background-color: #20222e;
+}
+
+.bg-welcome {
+  background-image: url("./assets/img/hero.gif");
+}
+
+.active-tabs {
+  background-color: #ffc525;
+  /* background-color: #fbad11; */
+}
+.show-tabs {
+  display: block;
+}
+
+.hide-tabs {
+  display: none;
+}
+
+.sliderWrap {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.sliderWrap .btnClose,
+.sliderWrap .btnPrev,
+.sliderWrap .btnNext {
+  position: fixed;
+  cursor: pointer;
+  opacity: 0.7;
+  color: #fff;
+  z-index: 9999;
+}
+
+.btnNext:hover,
+.btnPrev:hover {
+  opacity: 1;
+  color: #ffc525;
+}
+
+.btnClose:hover {
+  opacity: 1;
+  color: #ff2525;
+}
+
+.sliderWrap .btnClose {
+  top: 40px;
+  right: 40px;
+}
+
+.sliderWrap .btnPrev {
+  top: 50%;
+  transform: translateY(-50%);
+  left: 40px;
+}
+
+.sliderWrap .btnNext {
+  top: 50%;
+  transform: translateY(-50%);
+  right: 40px;
+}
+
+/* Desktop */
+@media only screen and (min-width: 600px) {
+  .fullScreenImage {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fullScreenImage img {
+    max-width: 100%;
+    height: 70%;
+    pointer-events: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 600px) {
+  .sliderWrap .btnNext {
+    top: 50%;
+    transform: translateY(-50%);
+    right: 40px;
+    font-size: 35px;
+  }
+
+  .sliderWrap .btnPrev {
+    top: 50%;
+    transform: translateY(-50%);
+    left: 40px;
+    font-size: 35px;
+  }
+
+  .sliderWrap .btnClose {
+    top: 150px;
+    right: 10px;
+    font-size: 35px;
+  }
+
+  .fullScreenImage {
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .fullScreenImage img {
+    max-width: 100%;
+    max-height: 100%;
+    pointer-events: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* IE 10 and IE 11 */
+    user-select: none; /* Standard syntax */
+  }
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* html {
+    @apply text-slate-100;
+  } */
+
+  .font-outline-1 {
+    -webkit-text-stroke: 1px black;
+  }
+  .font-outline-2 {
+    -webkit-text-stroke: 5px black;
+  }
+  .font-outline-4 {
+    -webkit-text-stroke: 7px black;
+  }
+}
+
+@font-face {
+  font-family: pixelFont;
+  src: url("../src/assets/font/pixelFont.TTF");
+}
