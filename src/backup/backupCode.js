@@ -205,27 +205,6 @@
 //     setDataCategory(result)
 //   }
 
-//   const counts = portfolio.reduce((prevValue, currentValue) => {
-//     let name = currentValue.category
-//     if (!prevValue.hasOwnProperty(name)) {
-//       prevValue[name] = 0
-//     }
-//     prevValue[name]++
-
-//     return prevValue
-//   }, {})
-
-//   const categoryCount = Object.keys(counts).map((key) => {
-//     return {
-//       category: key,
-//       // counts: counts[key],
-//     }
-//   })
-
-//   const categoryArray = Object.keys(categoryCount).map(
-//     (key) => categoryCount[key]
-//   )
-
 
   // Multi Filter Category
 

@@ -1,6 +1,9 @@
 import { useState, useContext, useEffect } from "react"
 import myContext from "../../context/data/MyContext"
 import Pagination from "../../components/pagination/Pagination"
+import { LazyLoadImage } from "react-lazy-load-image-component"
+import "react-lazy-load-image-component/src/effects/blur.css"
+import "react-lazy-load-image-component/src/effects/opacity.css"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -11,7 +14,7 @@ import {
 
 function Slideshow() {
   const context = useContext(myContext)
-  const { portfolio, dataFilterCategory } = context
+  const { dataFilterCategory } = context
   const [currentPage, setCurrentPage] = useState(1)
   const [postsPerPage, setPostsPerPage] = useState(6)
 
@@ -46,26 +49,6 @@ function Slideshow() {
       : setSlideNumber(slideNumber + 1)
   }
 
-  // const counts = currentPosts.reduce((prevValue, currentValue) => {
-  //   let name = currentValue.category
-  //   if (!prevValue.hasOwnProperty(name)) {
-  //     prevValue[name] = 0
-  //   }
-  //   prevValue[name]++
-
-  //   return prevValue
-  // }, {})
-
-  // const categoryArray = Object.keys(counts).map((key) => {
-  //   return {
-  //     category: key,
-  //   }
-  // })
-
-  // const categoryNow = Object.keys(categoryArray).map(
-  //   (key) => categoryArray[key]
-  // )
-
   return (
     <div className="">
       {openModal && (
@@ -94,15 +77,6 @@ function Slideshow() {
         </div>
       )}
 
-      {/* {categoryNow.map(
-        (item, idx) =>
-          idx < 1 && (
-            <h1 className="text-white text-xl md:text-2xl text-center capitalize mb-4">
-              {item.category}
-            </h1>
-          )
-      )} */}
-
       {/* Filter By Category */}
       <div className="flex flex-wrap justify-center item-center">
         {currentPosts.map(
@@ -110,10 +84,13 @@ function Slideshow() {
             idx < 5 && (
               <div key={idx} className="md:w-1/2 lg:w-1/3 p-2">
                 <div key={idx} className="flex relative">
-                  <img
+                  <LazyLoadImage
+                    // <img
                     src={item.imageUrl}
                     className="inset-0 h-72 w-full object-cover object-center rounded-sm opacity-75 hover:opacity-100 cursor-pointer"
                     onClick={() => handleOpenModal(idx)}
+                    loading="eager"
+                    effect="blur"
                     key={idx}
                   />
                 </div>

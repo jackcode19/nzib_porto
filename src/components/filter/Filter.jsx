@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from "react"
 import myContext from "../../context/data/MyContext"
-function Filter() {
+function Filter({ active }) {
   const context = useContext(myContext)
   const { portfolio, categoryArray, filterResult } = context
+
+  // console.log(filterResult)
 
   return (
     // <div className="px-4 grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 mt-4 "></div>

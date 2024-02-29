@@ -1,4 +1,4 @@
-import React, { useEffect, useState, context } from "react"
+import React, { useEffect, useState, context, useMemo } from "react"
 import MyContext from "./MyContext"
 import {
   collection,
@@ -14,14 +14,10 @@ import {
   orderBy,
   startAfter,
 } from "firebase/firestore"
-import {
-  getDownloadURL,
-  ref,
-  uploadBytesResumable,
-  deleteObject,
-} from "firebase/storage"
+import { ref, deleteObject } from "firebase/storage"
 import { dataDb, imagesDb } from "../../firebase/firebaseConfig"
 import { toast } from "react-toastify"
+import { Blurhash } from "react-blurhash"
 
 function MyState(props) {
   // =============================  Get All Data Portfolio  ===============================
@@ -29,6 +25,8 @@ function MyState(props) {
   const [loading, setLoading] = useState(false)
 
   const getPortfolioData = async () => {
+    setLoading(true)
+
     try {
       const q = query(collection(dataDb, "collection"))
 
@@ -38,6 +36,7 @@ function MyState(props) {
           portfolioArray.push({ ...doc.data(), id: doc.id })
         })
         setPortfolio(portfolioArray)
+        setLoading(false)
       })
 
       return () => data
@@ -88,14 +87,16 @@ function MyState(props) {
 
   // =============================  Get data Include Filter By Category ===============================
   const [dataFilterCategory, setDataCategory] = useState(portfolio)
+
   const fetchPost = async () => {
+    setLoading(true)
     await getDocs(collection(dataDb, "collection")).then((querySnapshot) => {
       const newData = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }))
       setDataCategory(newData)
-      console.log(dataFilterCategory, newData)
+      setLoading(false)
     })
   }
 
@@ -103,10 +104,14 @@ function MyState(props) {
     fetchPost()
   }, [])
 
+  const [isloading, setIsLoading] = useState(true)
+
   const filterResult = (categoryItem) => {
+    setIsLoading(true)
     const result = portfolio.filter((curData) => {
       return curData.category === categoryItem
     })
+    setIsLoading(false)
     setDataCategory(result)
   }
 
@@ -143,6 +148,9 @@ function MyState(props) {
         dataFilterCategory,
         filterResult,
         deletePortfolio,
+        loading,
+        setLoading,
+        isloading,
       }}
     >
       {props.children}

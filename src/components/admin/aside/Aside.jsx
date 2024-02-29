@@ -5,6 +5,7 @@ import { toast } from "react-toastify"
 import { signOut } from "firebase/auth"
 import { useNavigate } from "react-router-dom"
 import { HiMenuAlt4 } from "react-icons/hi"
+import { HiUserCircle } from "react-icons/hi"
 function Aside({ user }) {
   // const [user, setUser] = useState("")
   const [dropdownUser, setDropdownUser] = React.useState(false)
@@ -53,7 +54,7 @@ function Aside({ user }) {
                   alt="nzib"
                 />
                 <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                  Nzib
+                  Nzib Admin
                 </span>
               </a>
             </div>
@@ -67,11 +68,12 @@ function Aside({ user }) {
                       onClick={() => setDropdownUser(false)}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <img
+                      <HiUserCircle fontSize={28} className="text-white" />
+                      {/* <img
                         className="w-8 h-8 rounded-full"
                         src="./src/assets/img/profile.webp"
                         alt="user photo"
-                      />
+                      /> */}
                     </button>
                   ) : (
                     <button
@@ -80,11 +82,12 @@ function Aside({ user }) {
                       onClick={() => setDropdownUser(true)}
                     >
                       <span className="sr-only">Open user menu</span>
-                      <img
+                      <HiUserCircle fontSize={28} className="text-white" />
+                      {/* <img
                         className="w-8 h-8 rounded-full"
                         src="./src/assets/img/profile.webp"
                         alt="user photo"
-                      />
+                      /> */}
                     </button>
                   )}
                 </div>
